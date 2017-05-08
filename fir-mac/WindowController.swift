@@ -14,7 +14,6 @@ class WindowController: NSWindowController {
         super.windowDidLoad()
 
         window?.titlebarAppearsTransparent = true
-
     }
 
 }

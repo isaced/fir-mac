@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B5E720E1EC0251400557E18 /* HTTPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5E720D1EC0251400557E18 /* HTTPManager.swift */; };
+		0B5E72111EC0277A00557E18 /* FIRApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5E72101EC0277A00557E18 /* FIRApp.swift */; };
+		0B5E72141EC03DBF00557E18 /* FIRAppTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5E72131EC03DBF00557E18 /* FIRAppTableCellView.swift */; };
 		0B8426171D1A4C90006EBE31 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8426161D1A4C90006EBE31 /* WindowController.swift */; };
 		0B8426191D1A5E74006EBE31 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8426181D1A5E74006EBE31 /* LeftViewController.swift */; };
 		0B84261B1D1A6B6D006EBE31 /* MiddleAlignedTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B84261A1D1A6B6D006EBE31 /* MiddleAlignedTextFieldCell.swift */; };
@@ -14,9 +17,13 @@
 		0BF95A621D1A3B8A00F6BF62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF95A611D1A3B8A00F6BF62 /* AppDelegate.swift */; };
 		0BF95A661D1A3B8A00F6BF62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BF95A651D1A3B8A00F6BF62 /* Assets.xcassets */; };
 		0BF95A691D1A3B8A00F6BF62 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BF95A671D1A3B8A00F6BF62 /* Main.storyboard */; };
+		D854C89944699BC43276BE32 /* Pods_fir_mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A54D130C8393B07CED35F1 /* Pods_fir_mac.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B5E720D1EC0251400557E18 /* HTTPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPManager.swift; sourceTree = "<group>"; };
+		0B5E72101EC0277A00557E18 /* FIRApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIRApp.swift; sourceTree = "<group>"; };
+		0B5E72131EC03DBF00557E18 /* FIRAppTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIRAppTableCellView.swift; sourceTree = "<group>"; };
 		0B8426161D1A4C90006EBE31 /* WindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
 		0B8426181D1A5E74006EBE31 /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
 		0B84261A1D1A6B6D006EBE31 /* MiddleAlignedTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiddleAlignedTextFieldCell.swift; sourceTree = "<group>"; };
@@ -26,6 +33,9 @@
 		0BF95A651D1A3B8A00F6BF62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0BF95A681D1A3B8A00F6BF62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0BF95A6A1D1A3B8A00F6BF62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4108783F5D644C9896BFFD69 /* Pods-fir-mac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fir-mac.debug.xcconfig"; path = "Pods/Target Support Files/Pods-fir-mac/Pods-fir-mac.debug.xcconfig"; sourceTree = "<group>"; };
+		61A54D130C8393B07CED35F1 /* Pods_fir_mac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fir_mac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		89B1D50CC075A65767EE3D6E /* Pods-fir-mac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fir-mac.release.xcconfig"; path = "Pods/Target Support Files/Pods-fir-mac/Pods-fir-mac.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +43,44 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D854C89944699BC43276BE32 /* Pods_fir_mac.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B5E720C1EC0250800557E18 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				0B5E720D1EC0251400557E18 /* HTTPManager.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		0B5E720F1EC0276E00557E18 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0B5E72101EC0277A00557E18 /* FIRApp.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0B5E72121EC03D9300557E18 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0B5E72131EC03DBF00557E18 /* FIRAppTableCellView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		0BF95A551D1A3B8900F6BF62 = {
 			isa = PBXGroup;
 			children = (
 				0BF95A601D1A3B8A00F6BF62 /* fir-mac */,
 				0BF95A5F1D1A3B8A00F6BF62 /* Products */,
+				7E85EBB621F4A0ADB8E2F017 /* Pods */,
+				3B9FC656411988B1650108F8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +95,9 @@
 		0BF95A601D1A3B8A00F6BF62 /* fir-mac */ = {
 			isa = PBXGroup;
 			children = (
+				0B5E72121EC03D9300557E18 /* Views */,
+				0B5E720F1EC0276E00557E18 /* Models */,
+				0B5E720C1EC0250800557E18 /* Tools */,
 				0BF95A611D1A3B8A00F6BF62 /* AppDelegate.swift */,
 				0B8426161D1A4C90006EBE31 /* WindowController.swift */,
 				0BB207151D1A493F00F52BDF /* MainViewController.swift */,
@@ -70,6 +110,23 @@
 			path = "fir-mac";
 			sourceTree = "<group>";
 		};
+		3B9FC656411988B1650108F8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				61A54D130C8393B07CED35F1 /* Pods_fir_mac.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7E85EBB621F4A0ADB8E2F017 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4108783F5D644C9896BFFD69 /* Pods-fir-mac.debug.xcconfig */,
+				89B1D50CC075A65767EE3D6E /* Pods-fir-mac.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -77,9 +134,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0BF95A6D1D1A3B8A00F6BF62 /* Build configuration list for PBXNativeTarget "fir-mac" */;
 			buildPhases = (
+				F42D61E0E8CFC96047D0FAF8 /* [CP] Check Pods Manifest.lock */,
 				0BF95A5A1D1A3B8900F6BF62 /* Sources */,
 				0BF95A5B1D1A3B8900F6BF62 /* Frameworks */,
 				0BF95A5C1D1A3B8900F6BF62 /* Resources */,
+				8D7CAAFF71A9C189F9883411 /* [CP] Embed Pods Frameworks */,
+				E7E04EED777F281EF3AE9795 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -135,15 +195,66 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8D7CAAFF71A9C189F9883411 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-fir-mac/Pods-fir-mac-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E7E04EED777F281EF3AE9795 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-fir-mac/Pods-fir-mac-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F42D61E0E8CFC96047D0FAF8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0BF95A5A1D1A3B8900F6BF62 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				0BF95A621D1A3B8A00F6BF62 /* AppDelegate.swift in Sources */,
+				0B5E72141EC03DBF00557E18 /* FIRAppTableCellView.swift in Sources */,
+				0B5E720E1EC0251400557E18 /* HTTPManager.swift in Sources */,
 				0B8426191D1A5E74006EBE31 /* LeftViewController.swift in Sources */,
 				0B8426171D1A4C90006EBE31 /* WindowController.swift in Sources */,
 				0B84261B1D1A6B6D006EBE31 /* MiddleAlignedTextFieldCell.swift in Sources */,
+				0B5E72111EC0277A00557E18 /* FIRApp.swift in Sources */,
 				0BB207161D1A493F00F52BDF /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,6 +365,7 @@
 		};
 		0BF95A6E1D1A3B8A00F6BF62 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4108783F5D644C9896BFFD69 /* Pods-fir-mac.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -268,6 +380,7 @@
 		};
 		0BF95A6F1D1A3B8A00F6BF62 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 89B1D50CC075A65767EE3D6E /* Pods-fir-mac.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
