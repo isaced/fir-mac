@@ -27,7 +27,7 @@ class LeftViewController: NSViewController, NSTableViewDataSource {
         return 5
     }
     
-    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
+    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         if tableColumn?.identifier == "icon" {
             return NSImage(named: "airplane")
         } else if tableColumn?.identifier == "name" {
