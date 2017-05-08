@@ -14,7 +14,7 @@ class LeftViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
     @IBOutlet weak var uploadButton: NSButton!
     @IBOutlet weak var tableView: NSTableView!
 
-    var apps: [FIRAPP] = []
+    var apps: [FIRApp] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,5 +58,14 @@ class LeftViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
     
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
         return 60
+    }
+    
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        var app: FIRApp?
+        if tableView.selectedRow >= 0 {
+            app = apps[tableView.selectedRow]
+        }
+        
+        NotificationCenter.default.post(name: NSNotification.Name.FIRListSelectionChange, object: app)
     }
 }
