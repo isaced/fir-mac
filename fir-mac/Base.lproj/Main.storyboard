@@ -472,7 +472,7 @@
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mQp-I1-PvP">
                                 <rect key="frame" x="12" y="373" width="206" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="bevel" title="Upload" bezelStyle="regularSquare" alignment="center" borderStyle="border" inset="2" id="jaE-bz-sDF">
+                                <buttonCell key="cell" type="bevel" title="Upload" bezelStyle="regularSquare" alignment="center" enabled="NO" borderStyle="border" inset="2" id="jaE-bz-sDF">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>

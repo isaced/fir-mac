@@ -21,14 +21,19 @@ class LeftViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
 
         self.tableView.dataSource = self
         
-        HTTPManager.shared.fetchApps { (apps) in
-            self.apps = apps
-            self.tableView.reloadData()
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.FIRLoginComplete, object: nil, queue: nil) { (noti) in
+            self.reloadData()
+        }
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.FIRLogoutComplete, object: nil, queue: nil) { (noti) in
+            self.reloadData()
         }
     }
     
     func reloadData() {
-        
+        HTTPManager.shared.fetchApps { (apps) in
+            self.apps = apps
+            self.tableView.reloadData()
+        }
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {

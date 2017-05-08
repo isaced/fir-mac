@@ -18,6 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         if let cached = UserDefaults.standard.string(forKey: UserDefaultsFIRAPITokenKey) {
             HTTPManager.shared.APIToken = cached
+            postLoginNotification()
         }else{
             alertForAPIToken()
         }
@@ -54,6 +55,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             
             UserDefaults.standard.set(token, forKey: UserDefaultsFIRAPITokenKey)
             HTTPManager.shared.APIToken = token
+            postLoginNotification()
         } else {
             exit(0)
         }
@@ -66,6 +68,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func logoutMenuAction(_ sender: NSMenuItem) {
         UserDefaults.standard.removeObject(forKey: UserDefaultsFIRAPITokenKey)
         HTTPManager.shared.APIToken = nil
+        postLogoutNotification()
         
         let alert = NSAlert()
         alert.informativeText = "退出登录成功！"
@@ -77,5 +80,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSWorkspace.shared().open(URL(string: "https://github.com/isaced/fir-mac")!)
     }
     
+    func postLoginNotification() {
+        NotificationCenter.default.post(name: Notification.Name.FIRLoginComplete, object: nil)
+    }
+    
+    func postLogoutNotification() {
+        NotificationCenter.default.post(name: Notification.Name.FIRLogoutComplete, object: nil)
+    }
 }
 

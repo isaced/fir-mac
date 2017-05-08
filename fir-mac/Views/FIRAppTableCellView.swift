@@ -2,7 +2,7 @@
 //  FIRAppTableCellView.swift
 //  fir-mac
 //
-//  Created by feeling on 2017/5/8.
+//  Created by isaced on 2017/5/8.
 //
 //
 
