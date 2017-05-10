@@ -68,4 +68,22 @@ class LeftViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
         
         NotificationCenter.default.post(name: NSNotification.Name.FIRListSelectionChange, object: app)
     }
+    
+    @IBAction func upload(_ sender: NSButton) {
+        let openPanel = NSOpenPanel()
+        openPanel.allowsMultipleSelection = false
+        openPanel.allowedFileTypes = ["ipa"]
+        if openPanel.runModal() == NSModalResponseOK {
+            if let url = openPanel.url {
+                Util.parseAppInfo(sourceFile: url, callback: { (appInfo) in
+                    if let appInfo = appInfo {
+                        print(appInfo)
+                    }else{
+                        print("App 解析出错...")
+                    }
+                })
+            }
+        }
+    }
+    
 }
