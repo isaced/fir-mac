@@ -78,6 +78,11 @@ class LeftViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
                 Util.parseAppInfo(sourceFile: url, callback: { (appInfo) in
                     if let appInfo = appInfo {
                         print(appInfo)
+                        HTTPManager.shared.uploadApp(appInfo: appInfo, uploadProgress: { (progress) in
+                            print("upload progress...")
+                        }, complate: { (success) in
+                            print("upload complate")
+                        })
                     }else{
                         print("App 解析出错...")
                     }

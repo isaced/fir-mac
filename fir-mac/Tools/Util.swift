@@ -7,17 +7,26 @@
 //
 
 import Foundation
+import Cocoa
 
 struct ParsedAppInfo: CustomStringConvertible {
+    
     var appName: String?
     var bundleID: String?
     var version: String?
     var build: String?
+    var type: UploadAppType?
+    
+    var iconImage: NSImage?
+    var iconImageURL: URL?
+    
+    var sourceFileURL: URL?
     
     var description: String {
-        return "--- App Info --- \nApp Name: \((appName ?? "")) \nBundle ID: \((bundleID ?? "")) \nVersion: \((version ?? "")) \nBuild: \((build ?? ""))\n--- App Info ---"
+        return "--- App Info --- \nApp Name: \((appName ?? "")) \nBundle ID: \((bundleID ?? "")) \nVersion: \((version ?? "")) \nBuild: \((build ?? ""))\nType: \(type?.rawValue ?? "")\nIcon: \(iconImage != nil ? "YES":"NO") \n--- App Info ---"
     }
 }
+
 class Util {
     
     //MARK: Constants
@@ -57,6 +66,25 @@ class Util {
                             info.version = defaultsRead(item: "CFBundleShortVersionString", plistFilePath: infoPlistPath.path)
                             info.build = defaultsRead(item: "CFBundleVersion", plistFilePath: infoPlistPath.path)
                             info.appName = defaultsRead(item: "CFBundleDisplayName", plistFilePath: infoPlistPath.path)
+                            info.type = .ios
+                            info.sourceFileURL = sourceFile
+
+                            // icon
+                            let iconNames = ["AppIcon60x60@3x.png",
+                                             "AppIcon60x60@2x.png",
+                                             "AppIcon57x57@3x.png",
+                                             "AppIcon57x57@2x.png",
+                                             "AppIcon40x40@3x.png",
+                                             "AppIcon40x40@2x.png"]
+                            
+                            for iconName in iconNames {
+                                let iconFile = filePath.appendingPathComponent(iconName, isDirectory: false)
+                                if iconFile.isExists() {
+                                    info.iconImage = NSImage(contentsOfFile: iconFile.path)
+                                    info.iconImageURL = iconFile
+                                    break
+                                }
+                            }
                             callback(info)
                             
                             // clean
@@ -82,13 +110,13 @@ class Util {
     }
     
     static func cleanTempDir(path: URL) {
-        try! FileManager.default.removeItem(atPath: path.path)
+//        try! FileManager.default.removeItem(atPath: path.path)
         print("--- clean temp dir...")
     }
     
     static func makeTempFolder() -> URL? {
         let tempTask = Process().execute(mktempPath, workingDirectory: nil, arguments: ["-d"])
-        let url = URL(string: tempTask.output.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))
+        let url = URL(fileURLWithPath: tempTask.output.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines), isDirectory: true)
         return url
     }
 
