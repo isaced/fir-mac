@@ -46,13 +46,13 @@ class HTTPManager {
             return
         }
         
-        Alamofire.request("http://api.fir.im/apps/\(app.ID)", method: .post, parameters: ["api_token": APIToken]).responseSwiftyJSON { (response) in
+        Alamofire.request("http://api.fir.im/apps/\(app.ID)", method: .get, parameters: ["api_token": APIToken]).responseSwiftyJSON { (response) in
             app.fillDetail(with: response.value)
             callback()
         }
     }
     
-    func prepareUploadApp(bundleID: String, type:UploadAppType, callback:@escaping ((JSON?)->Void)) {
+    private func prepareUploadApp(bundleID: String, type:UploadAppType, callback:@escaping ((JSON?)->Void)) {
         guard let APIToken = APIToken else {
             callback(nil)
             return
@@ -63,9 +63,10 @@ class HTTPManager {
         }
     }
     
-    func uploadFile(uploadUrl: String,
+    private func uploadFile(uploadUrl: String,
                     qiniuKey: String,
                     qiniuToken: String,
+                    prefix: String,
                     file: Data?,
                     fileURL: URL?,
                     appName: String? = nil,
@@ -74,10 +75,8 @@ class HTTPManager {
                     type: String? = nil,
                     uploadProgress: Request.ProgressHandler?,
                     complate: @escaping ((_ success: Bool)->Void)) {
-        
-        
         Alamofire.upload(multipartFormData: { (multipartFormData) in
-            multipartFormData.append(qiniuKey.data(using: .utf8)!, withName: "key") // mimeType: "text/plain"
+            multipartFormData.append(qiniuKey.data(using: .utf8)!, withName: "key")
             multipartFormData.append(qiniuToken.data(using: .utf8)!, withName: "token")
             if let file = file {
                 multipartFormData.append(file, withName: "file")
@@ -86,16 +85,16 @@ class HTTPManager {
                 multipartFormData.append(fileURL, withName: "file")
             }
             if let appName = appName {
-                multipartFormData.append(appName.data(using: .utf8)!, withName: "x:name")
+                multipartFormData.append(appName.data(using: .utf8)!, withName: "\(prefix)name")
             }
             if let version = version {
-                multipartFormData.append(version.data(using: .utf8)!, withName: "x:version")
+                multipartFormData.append(version.data(using: .utf8)!, withName: "\(prefix)version")       // prefix + "version"   // x-amz-meta- 居然可以?
             }
             if let build = build {
-                multipartFormData.append(build.data(using: .utf8)!, withName: "x:build")
+                multipartFormData.append(build.data(using: .utf8)!, withName: "\(prefix)build")           // prefix + "build"
             }
             if let type = type {
-                multipartFormData.append(type.data(using: .utf8)!, withName: "x:release_type")
+                multipartFormData.append(type.data(using: .utf8)!, withName: "\(prefix)release_type")     // prefix + "release_type"
             }
         }, to: uploadUrl) { (encodingResult) in
             switch encodingResult {
@@ -131,27 +130,30 @@ class HTTPManager {
                 let iconUploadUrl = response?.dictionary?["cert"]?["icon"]["upload_url"].url?.absoluteString,
                 let binaryQiniuKey = response?.dictionary?["cert"]?["binary"]["key"].string,
                 let binaryQiniuToken = response?.dictionary?["cert"]?["binary"]["token"].string,
-                let binaryUploadUrl = response?.dictionary?["cert"]?["binary"]["upload_url"].url?.absoluteString {
+                let binaryUploadUrl = response?.dictionary?["cert"]?["binary"]["upload_url"].url?.absoluteString,
+                let uploadFieldPrefix = response?.dictionary?["cert"]?["prefix"].string {
                 // success
                 
                 // upload icon
-                if let iconData = appInfo.iconImage?.tiffRepresentation(using: .JPEG, factor: 0.9) {
-                    self.uploadFile(uploadUrl: iconUploadUrl,
-                               qiniuKey: iconQiniuKey,
-                               qiniuToken: iconQiniuToken,
-                               file: nil,
-                               fileURL: appInfo.iconImageURL!,
-                               uploadProgress: nil, complate: { (success) in
-                                if !success {
-                                    print("icon upload error...")
-                                }
-                    })
-                }
+//                if let iconData = appInfo.iconImage?.tiffRepresentation(using: .JPEG, factor: 0.9) {
+//                    self.uploadFile(uploadUrl: iconUploadUrl,
+//                               qiniuKey: iconQiniuKey,
+//                               qiniuToken: iconQiniuToken,
+//                               prefix: uploadFieldPrefix,
+//                               file: nil/* iconData */,
+//                               fileURL: appInfo.iconImageURL!,
+//                               uploadProgress: nil, complate: { (success) in
+//                                if !success {
+//                                    print("icon upload error...")
+//                                }
+//                    })
+//                }
                 
                 // upload package
                 self.uploadFile(uploadUrl: binaryUploadUrl,
                                 qiniuKey: binaryQiniuKey,
                                 qiniuToken: binaryQiniuToken,
+                                prefix: uploadFieldPrefix,
                                 file: nil,
                                 fileURL: souceFile,
                                 appName: appName,

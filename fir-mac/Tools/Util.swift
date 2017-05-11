@@ -58,35 +58,39 @@ class Util {
                             
                             
                             // Got info.plist
-                            let infoPlistPath = filePath.appendingPathComponent("info")
+                            let infoPlistPath = filePath.appendingPathComponent("Info.plist")
                             
-                            // read
-                            var info = ParsedAppInfo()
-                            info.bundleID = defaultsRead(item: "CFBundleIdentifier", plistFilePath: infoPlistPath.path)
-                            info.version = defaultsRead(item: "CFBundleShortVersionString", plistFilePath: infoPlistPath.path)
-                            info.build = defaultsRead(item: "CFBundleVersion", plistFilePath: infoPlistPath.path)
-                            info.appName = defaultsRead(item: "CFBundleDisplayName", plistFilePath: infoPlistPath.path)
-                            info.type = .ios
-                            info.sourceFileURL = sourceFile
-
-                            // icon
-                            let iconNames = ["AppIcon60x60@3x.png",
-                                             "AppIcon60x60@2x.png",
-                                             "AppIcon57x57@3x.png",
-                                             "AppIcon57x57@2x.png",
-                                             "AppIcon40x40@3x.png",
-                                             "AppIcon40x40@2x.png"]
-                            
-                            for iconName in iconNames {
-                                let iconFile = filePath.appendingPathComponent(iconName, isDirectory: false)
-                                if iconFile.isExists() {
-                                    info.iconImage = NSImage(contentsOfFile: iconFile.path)
-                                    info.iconImageURL = iconFile
-                                    break
+                            if let data = try? Data(contentsOf: infoPlistPath) {
+                                if let plist = (try? PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil)) as? [String: Any] {
+                                    var info = ParsedAppInfo()
+                                    info.bundleID = plist["CFBundleIdentifier"] as? String
+                                    info.version = plist["CFBundleShortVersionString"] as? String
+                                    info.build = plist["CFBundleVersion"] as? String
+                                    info.appName = plist["CFBundleDisplayName"] as? String
+                                    info.type = .ios
+                                    info.sourceFileURL = sourceFile
+                                    
+                                    // icon
+                                    let iconNames = ["AppIcon60x60@3x.png",
+                                                     "AppIcon60x60@2x.png",
+                                                     "AppIcon57x57@3x.png",
+                                                     "AppIcon57x57@2x.png",
+                                                     "AppIcon40x40@3x.png",
+                                                     "AppIcon40x40@2x.png"]
+                                    
+                                    for iconName in iconNames {
+                                        let iconFile = filePath.appendingPathComponent(iconName, isDirectory: false)
+                                        if iconFile.isExists() {
+                                            info.iconImage = NSImage(contentsOfFile: iconFile.path)
+                                            info.iconImageURL = iconFile
+                                            break
+                                        }
+                                    }
+                                    callback(info)
+                                    
                                 }
                             }
-                            callback(info)
-                            
+
                             // clean
                             cleanTempDir(path: tempFolder)
                             return
