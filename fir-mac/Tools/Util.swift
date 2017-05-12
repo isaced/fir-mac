@@ -9,6 +9,10 @@
 import Foundation
 import Cocoa
 
+enum UploadAppIOSReleaseType: String {
+    case adhoc = "Adhoc"
+    case inHouse = "Inhouse"
+}
 struct ParsedAppInfo: CustomStringConvertible {
     
     var appName: String?
@@ -16,6 +20,7 @@ struct ParsedAppInfo: CustomStringConvertible {
     var version: String?
     var build: String?
     var type: UploadAppType?
+    var iosReleaseType: UploadAppIOSReleaseType?
     
     var iconImage: NSImage?
     var iconImageURL: URL?

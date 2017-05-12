@@ -72,7 +72,7 @@ class HTTPManager {
                     appName: String? = nil,
                     version: String? = nil,
                     build: String? = nil,
-                    type: String? = nil,
+                    iosReleaseType: String? = nil,
                     uploadProgress: Request.ProgressHandler?,
                     complate: @escaping ((_ success: Bool)->Void)) {
         Alamofire.upload(multipartFormData: { (multipartFormData) in
@@ -93,8 +93,11 @@ class HTTPManager {
             if let build = build {
                 multipartFormData.append(build.data(using: .utf8)!, withName: "\(prefix)build")           // prefix + "build"
             }
-            if let type = type {
-                multipartFormData.append(type.data(using: .utf8)!, withName: "\(prefix)release_type")     // prefix + "release_type"
+            if let iosReleaseType = iosReleaseType {
+                multipartFormData.append(iosReleaseType.data(using: .utf8)!, withName: "\(prefix)release_type")     // prefix + "release_type"
+            }
+            if let fileURL = fileURL {
+                multipartFormData.append(fileURL, withName: "file")
             }
         }, to: uploadUrl) { (encodingResult) in
             switch encodingResult {
@@ -125,48 +128,50 @@ class HTTPManager {
         }
 
         prepareUploadApp(bundleID: bundleID, type: type) { (response) in
-            if let iconQiniuKey = response?.dictionary?["cert"]?["icon"]["key"].string,
-                let iconQiniuToken = response?.dictionary?["cert"]?["icon"]["token"].string,
-                let iconUploadUrl = response?.dictionary?["cert"]?["icon"]["upload_url"].url?.absoluteString,
-                let binaryQiniuKey = response?.dictionary?["cert"]?["binary"]["key"].string,
-                let binaryQiniuToken = response?.dictionary?["cert"]?["binary"]["token"].string,
-                let binaryUploadUrl = response?.dictionary?["cert"]?["binary"]["upload_url"].url?.absoluteString,
-                let uploadFieldPrefix = response?.dictionary?["cert"]?["prefix"].string {
-                // success
-                
+            if let uploadFieldPrefix = response?.dictionary?["cert"]?["prefix"].string {
                 // upload icon
-//                if let iconData = appInfo.iconImage?.tiffRepresentation(using: .JPEG, factor: 0.9) {
-//                    self.uploadFile(uploadUrl: iconUploadUrl,
-//                               qiniuKey: iconQiniuKey,
-//                               qiniuToken: iconQiniuToken,
-//                               prefix: uploadFieldPrefix,
-//                               file: nil/* iconData */,
-//                               fileURL: appInfo.iconImageURL!,
-//                               uploadProgress: nil, complate: { (success) in
-//                                if !success {
-//                                    print("icon upload error...")
-//                                }
-//                    })
-//                }
+                if  let iconQiniuKey = response?.dictionary?["cert"]?["icon"]["key"].string,
+                    let iconQiniuToken = response?.dictionary?["cert"]?["icon"]["token"].string,
+                    let iconUploadUrl = response?.dictionary?["cert"]?["icon"]["upload_url"].url?.absoluteString
+                {
+                    if let iconData = appInfo.iconImage?.tiffRepresentation(using: .JPEG, factor: 0.9) {
+                        self.uploadFile(uploadUrl: iconUploadUrl,
+                                   qiniuKey: iconQiniuKey,
+                                   qiniuToken: iconQiniuToken,
+                                   prefix: uploadFieldPrefix,
+                                   file: nil/* iconData */,
+                                   fileURL: appInfo.iconImageURL!,
+                                   uploadProgress: nil, complate: { (success) in
+                                    if !success {
+                                        print("icon upload error...")
+                                    }
+                        })
+                    }
+                }
                 
                 // upload package
-                self.uploadFile(uploadUrl: binaryUploadUrl,
-                                qiniuKey: binaryQiniuKey,
-                                qiniuToken: binaryQiniuToken,
-                                prefix: uploadFieldPrefix,
-                                file: nil,
-                                fileURL: souceFile,
-                                appName: appName,
-                                version: version,
-                                build: build,
-                                type: type.rawValue,
-                                uploadProgress: { (p) in
-                    uploadProgress?(p)
-                }, complate: { (success) in
-                    complate(success)
-                })
-                
-            }else{
+                if  let binaryQiniuKey = response?.dictionary?["cert"]?["binary"]["key"].string,
+                    let binaryQiniuToken = response?.dictionary?["cert"]?["binary"]["token"].string,
+                    let binaryUploadUrl = response?.dictionary?["cert"]?["binary"]["upload_url"].url?.absoluteString
+                {
+                    
+                    self.uploadFile(uploadUrl: binaryUploadUrl,
+                                    qiniuKey: binaryQiniuKey,
+                                    qiniuToken: binaryQiniuToken,
+                                    prefix: uploadFieldPrefix,
+                                    file: nil,
+                                    fileURL: souceFile,
+                                    appName: appName,
+                                    version: version,
+                                    build: build,
+                                    iosReleaseType: appInfo.iosReleaseType?.rawValue,
+                                    uploadProgress: { (p) in
+                                        uploadProgress?(p)
+                    }, complate: { (success) in
+                        complate(success)
+                    })
+                }
+            } else {
                 complate(false)
             }
         }
