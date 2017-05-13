@@ -23,8 +23,7 @@ struct ParsedAppInfo: CustomStringConvertible {
     var iosReleaseType: UploadAppIOSReleaseType?
     
     var iconImage: NSImage?
-    var iconImageURL: URL?
-    
+
     var sourceFileURL: URL?
     
     var description: String {
@@ -87,12 +86,10 @@ class Util {
                                         let iconFile = filePath.appendingPathComponent(iconName, isDirectory: false)
                                         if iconFile.isExists() {
                                             info.iconImage = NSImage(contentsOfFile: iconFile.path)
-                                            info.iconImageURL = iconFile
                                             break
                                         }
                                     }
                                     callback(info)
-                                    
                                 }
                             }
 
@@ -119,7 +116,7 @@ class Util {
     }
     
     static func cleanTempDir(path: URL) {
-//        try! FileManager.default.removeItem(atPath: path.path)
+        try! FileManager.default.removeItem(atPath: path.path)
         print("--- clean temp dir...")
     }
     

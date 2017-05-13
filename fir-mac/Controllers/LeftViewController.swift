@@ -75,16 +75,26 @@ class LeftViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
         openPanel.allowedFileTypes = ["ipa"]
         if openPanel.runModal() == NSModalResponseOK {
             if let url = openPanel.url {
+                
+                // uploading view controller
+                let uploadViewController = self.storyboard?.instantiateController(withIdentifier: "UploadViewController") as! UploadViewController
+                self.parent?.presentViewControllerAsSheet(uploadViewController)
+                uploadViewController.startParsing()
                 Util.parseAppInfo(sourceFile: url, callback: { (appInfo) in
+                    uploadViewController.stopParsing()
                     if let appInfo = appInfo {
                         print(appInfo)
+                        uploadViewController.appInfo = appInfo
+                        uploadViewController.startUpload()
                         HTTPManager.shared.uploadApp(appInfo: appInfo, uploadProgress: { (progress) in
-                            print("upload progress...")
+                            uploadViewController.uploadingProgressIndicator.doubleValue = progress.fractionCompleted
                         }, complate: { (success) in
                             print("upload complate")
+                            self.parent?.dismissViewController(uploadViewController)
                         })
                     }else{
                         print("App 解析出错...")
+                        self.parent?.dismissViewController(uploadViewController)
                     }
                 })
             }

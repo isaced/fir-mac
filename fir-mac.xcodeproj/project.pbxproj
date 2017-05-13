@@ -21,6 +21,7 @@
 		0BF95A621D1A3B8A00F6BF62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF95A611D1A3B8A00F6BF62 /* AppDelegate.swift */; };
 		0BF95A661D1A3B8A00F6BF62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BF95A651D1A3B8A00F6BF62 /* Assets.xcassets */; };
 		0BF95A691D1A3B8A00F6BF62 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BF95A671D1A3B8A00F6BF62 /* Main.storyboard */; };
+		0D505C861EC7550300036114 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D505C851EC7550300036114 /* UploadViewController.swift */; };
 		D854C89944699BC43276BE32 /* Pods_fir_mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A54D130C8393B07CED35F1 /* Pods_fir_mac.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 		0BF95A651D1A3B8A00F6BF62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0BF95A681D1A3B8A00F6BF62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0BF95A6A1D1A3B8A00F6BF62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0D505C851EC7550300036114 /* UploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		4108783F5D644C9896BFFD69 /* Pods-fir-mac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fir-mac.debug.xcconfig"; path = "Pods/Target Support Files/Pods-fir-mac/Pods-fir-mac.debug.xcconfig"; sourceTree = "<group>"; };
 		61A54D130C8393B07CED35F1 /* Pods_fir_mac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fir_mac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89B1D50CC075A65767EE3D6E /* Pods-fir-mac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fir-mac.release.xcconfig"; path = "Pods/Target Support Files/Pods-fir-mac/Pods-fir-mac.release.xcconfig"; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				0B5E721E1EC05C3200557E18 /* MiddleAlignedTextFieldCell.swift */,
 				0B5E721F1EC05C3200557E18 /* WindowController.swift */,
 				0B5E72241EC05C5600557E18 /* AppDetailViewController.swift */,
+				0D505C851EC7550300036114 /* UploadViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D505C861EC7550300036114 /* UploadViewController.swift in Sources */,
 				0B5E72271EC078F900557E18 /* Util.swift in Sources */,
 				0B5E72211EC05C3200557E18 /* MainViewController.swift in Sources */,
 				0B5E72251EC05C5600557E18 /* AppDetailViewController.swift in Sources */,

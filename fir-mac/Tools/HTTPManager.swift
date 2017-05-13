@@ -139,8 +139,8 @@ class HTTPManager {
                                    qiniuKey: iconQiniuKey,
                                    qiniuToken: iconQiniuToken,
                                    prefix: uploadFieldPrefix,
-                                   file: nil/* iconData */,
-                                   fileURL: appInfo.iconImageURL!,
+                                   file: iconData,
+                                   fileURL: nil,
                                    uploadProgress: nil, complate: { (success) in
                                     if !success {
                                         print("icon upload error...")
