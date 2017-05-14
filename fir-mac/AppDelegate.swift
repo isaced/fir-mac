@@ -76,7 +76,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         alertForAPIToken()
     }
     
-    @IBAction func helpMenuAction(_ sender: NSMenuItem) {
+    @IBAction func githubMenuAction(_ sender: NSMenuItem) {
         NSWorkspace.shared().open(URL(string: "https://github.com/isaced/fir-mac")!)
     }
     

@@ -78,9 +78,9 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Edit" id="BsQ-EM-OzA">
+                            <menuItem title="编辑" id="BsQ-EM-OzA">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Edit" id="QQZ-rI-9FX">
+                                <menu key="submenu" title="编辑" id="QQZ-rI-9FX">
                                     <items>
                                         <menuItem title="Undo" keyEquivalent="z" id="nsc-ve-f0V">
                                             <connections>
@@ -297,15 +297,17 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Help" id="wpr-3q-Mcd">
+                            <menuItem title="帮助" id="wpr-3q-Mcd">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
+                                <menu key="submenu" title="帮助" systemMenu="help" id="F2S-fz-NVQ">
                                     <items>
-                                        <menuItem title="fir-mac Help" keyEquivalent="?" id="FKE-Sm-Kum">
+                                        <menuItem title="GitHub - isaced/fir-mac" id="ZDr-g0-nZw">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="helpMenuAction:" target="Voe-Tx-rLC" id="3Yb-hC-QtZ"/>
+                                                <action selector="githubMenuAction:" target="Voe-Tx-rLC" id="CkS-PZ-ixi"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="fir-mac Help" keyEquivalent="?" id="FKE-Sm-Kum"/>
                                     </items>
                                 </menu>
                             </menuItem>
