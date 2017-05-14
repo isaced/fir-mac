@@ -37,7 +37,7 @@
 		0B5E72241EC05C5600557E18 /* AppDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDetailViewController.swift; sourceTree = "<group>"; };
 		0B5E72261EC078F900557E18 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		0B7DC0861EC30B7F00300577 /* Process+Execute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Process+Execute.swift"; sourceTree = "<group>"; };
-		0BF95A5E1D1A3B8A00F6BF62 /* fir-mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fir-mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0BF95A5E1D1A3B8A00F6BF62 /* fir.im.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fir.im.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BF95A611D1A3B8A00F6BF62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0BF95A651D1A3B8A00F6BF62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0BF95A681D1A3B8A00F6BF62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -113,7 +113,7 @@
 		0BF95A5F1D1A3B8A00F6BF62 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0BF95A5E1D1A3B8A00F6BF62 /* fir-mac.app */,
+				0BF95A5E1D1A3B8A00F6BF62 /* fir.im.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -153,9 +153,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0BF95A5D1D1A3B8900F6BF62 /* fir-mac */ = {
+		0BF95A5D1D1A3B8900F6BF62 /* fir.im */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0BF95A6D1D1A3B8A00F6BF62 /* Build configuration list for PBXNativeTarget "fir-mac" */;
+			buildConfigurationList = 0BF95A6D1D1A3B8A00F6BF62 /* Build configuration list for PBXNativeTarget "fir.im" */;
 			buildPhases = (
 				F42D61E0E8CFC96047D0FAF8 /* [CP] Check Pods Manifest.lock */,
 				0BF95A5A1D1A3B8900F6BF62 /* Sources */,
@@ -168,9 +168,9 @@
 			);
 			dependencies = (
 			);
-			name = "fir-mac";
+			name = fir.im;
 			productName = "fir-mac";
-			productReference = 0BF95A5E1D1A3B8A00F6BF62 /* fir-mac.app */;
+			productReference = 0BF95A5E1D1A3B8A00F6BF62 /* fir.im.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -201,7 +201,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0BF95A5D1D1A3B8900F6BF62 /* fir-mac */,
+				0BF95A5D1D1A3B8900F6BF62 /* fir.im */,
 			);
 		};
 /* End PBXProject section */
@@ -433,7 +433,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0BF95A6D1D1A3B8A00F6BF62 /* Build configuration list for PBXNativeTarget "fir-mac" */ = {
+		0BF95A6D1D1A3B8A00F6BF62 /* Build configuration list for PBXNativeTarget "fir.im" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0BF95A6E1D1A3B8A00F6BF62 /* Debug */,
