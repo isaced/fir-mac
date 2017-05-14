@@ -325,7 +325,7 @@
             <objects>
                 <windowController id="B8D-0N-5wS" customClass="WindowController" customModule="fir_mac" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="IQv-IB-iLA">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
                         <rect key="contentRect" x="494" y="259" width="700" height="500"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                     </window>
@@ -501,6 +501,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="450" height="150"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bQG-vM-jEd">
+                                <rect key="frame" x="353" y="9" width="80" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="取消" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dRu-dh-ms2">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="cancelAction:" target="uid-17-cQR" id="gM6-RX-Oqc"/>
+                                </connections>
+                            </button>
+                            <customView hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ALp-LR-KhE">
+                                <rect key="frame" x="143" y="35" width="163" height="81"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yi8-zP-56i">
+                                        <rect key="frame" x="20" y="17" width="48" height="48"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="success" id="ufJ-Uk-KE1"/>
+                                    </imageView>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTH-sG-epn">
+                                        <rect key="frame" x="74" y="32" width="71" height="17"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="上传成功！" id="m2t-AF-wve">
+                                            <font key="font" size="13" name=".PingFangSC-Regular"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                            </customView>
                             <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Vu-LO-0DA">
                                 <rect key="frame" x="159" y="46" width="131" height="57"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -520,9 +551,8 @@
                                     </progressIndicator>
                                 </subviews>
                             </customView>
-                            <customView hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xbg-3o-iC9">
+                            <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xbg-3o-iC9">
                                 <rect key="frame" x="0.0" y="0.0" width="450" height="150"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GXp-W1-b7R">
                                         <rect key="frame" x="20" y="40" width="70" height="70"/>
@@ -543,15 +573,29 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     </progressIndicator>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="62E-Xz-aEq"/>
+                                    <constraint firstAttribute="width" constant="450" id="X46-tT-aMJ"/>
+                                </constraints>
                             </customView>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="Xbg-3o-iC9" firstAttribute="leading" secondItem="Vf6-TD-Poj" secondAttribute="leading" id="8cV-pG-ZAU"/>
+                            <constraint firstAttribute="trailing" secondItem="Xbg-3o-iC9" secondAttribute="trailing" id="c7Y-yv-v4H"/>
+                            <constraint firstAttribute="bottom" secondItem="Xbg-3o-iC9" secondAttribute="bottom" id="fYp-0E-zLK"/>
+                            <constraint firstItem="Xbg-3o-iC9" firstAttribute="top" secondItem="Vf6-TD-Poj" secondAttribute="top" id="xQm-Iu-9vm"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="appIconImageView" destination="GXp-W1-b7R" id="1hr-4v-08S"/>
                         <outlet property="appNameLabel" destination="6J0-Cz-ne0" id="A1T-Dz-V0u"/>
+                        <outlet property="cancelButton" destination="bQG-vM-jEd" id="qs6-9x-ZHL"/>
                         <outlet property="infoView" destination="Xbg-3o-iC9" id="sJ9-VG-ici"/>
                         <outlet property="parsingIndicator" destination="3dW-nL-l7K" id="a5T-uZ-Zst"/>
                         <outlet property="parsingView" destination="9Vu-LO-0DA" id="YXr-du-6lo"/>
+                        <outlet property="resultStatusImageView" destination="Yi8-zP-56i" id="3VY-DN-NXm"/>
+                        <outlet property="resultStatusLabel" destination="m2t-AF-wve" id="O2d-pK-mwf"/>
+                        <outlet property="resultStatusView" destination="ALp-LR-KhE" id="xHT-en-fXa"/>
                         <outlet property="uploadingProgressIndicator" destination="UJn-nr-RHz" id="TqB-fY-m8f"/>
                     </connections>
                 </viewController>
@@ -825,5 +869,6 @@
     </scenes>
     <resources>
         <image name="airplane" width="640" height="640"/>
+        <image name="success" width="40.069564819335938" height="40.069564819335938"/>
     </resources>
 </document>

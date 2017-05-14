@@ -86,15 +86,21 @@ class LeftViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
                         print(appInfo)
                         uploadViewController.appInfo = appInfo
                         uploadViewController.startUpload()
-                        HTTPManager.shared.uploadApp(appInfo: appInfo, uploadProgress: { (progress) in
+                        HTTPManager.shared.uploadApp(appInfo: appInfo,
+                                                     encodingRequestSuccess: { (request) in
+                                uploadViewController.cancelActionCallback = {
+                                    request.cancel()
+                                }
+                        }, uploadProgress: {(progress) in
                             uploadViewController.uploadingProgressIndicator.doubleValue = progress.fractionCompleted
                         }, complate: { (success) in
                             print("upload complate")
-                            self.parent?.dismissViewController(uploadViewController)
+                            uploadViewController.stopUpload()
+                            uploadViewController.showResultStatus(success: success)
                         })
                     }else{
                         print("App 解析出错...")
-                        self.parent?.dismissViewController(uploadViewController)
+                        uploadViewController.showResultStatus(success: false, message: "App 解析出错")
                     }
                 })
             }

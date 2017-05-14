@@ -73,6 +73,7 @@ class HTTPManager {
                     version: String? = nil,
                     build: String? = nil,
                     iosReleaseType: String? = nil,
+                    encodingRequestSuccess: ((UploadRequest)->Void)? = nil,
                     uploadProgress: Request.ProgressHandler?,
                     complate: @escaping ((_ success: Bool)->Void)) {
         Alamofire.upload(multipartFormData: { (multipartFormData) in
@@ -88,7 +89,7 @@ class HTTPManager {
                 multipartFormData.append(appName.data(using: .utf8)!, withName: "\(prefix)name")
             }
             if let version = version {
-                multipartFormData.append(version.data(using: .utf8)!, withName: "\(prefix)version")       // prefix + "version"   // x-amz-meta- 居然可以?
+                multipartFormData.append(version.data(using: .utf8)!, withName: "\(prefix)version")       // prefix + "version"
             }
             if let build = build {
                 multipartFormData.append(build.data(using: .utf8)!, withName: "\(prefix)build")           // prefix + "build"
@@ -102,12 +103,15 @@ class HTTPManager {
         }, to: uploadUrl) { (encodingResult) in
             switch encodingResult {
             case .success(let upload, _, _):
+                
+                encodingRequestSuccess?(upload)
+                
                 upload.uploadProgress(closure: { (progress) in
                     uploadProgress?(progress)
                 })
                 upload.responseJSON { response in
                     debugPrint(response)
-                    complate(true)
+                    complate(response.result.isSuccess)
                 }
             case .failure(let encodingError):
                 print(encodingError)
@@ -116,7 +120,11 @@ class HTTPManager {
         }
     }
     
-    func uploadApp(appInfo: ParsedAppInfo, uploadProgress: Request.ProgressHandler?, complate: @escaping ((_ success: Bool)->Void)) {
+    func uploadApp(appInfo: ParsedAppInfo,
+                   encodingRequestSuccess: ((UploadRequest)->Void)? = nil,
+                   uploadProgress: Request.ProgressHandler?,
+                   complate: @escaping ((_ success: Bool)->Void))
+    {
         guard let bundleID = appInfo.bundleID,
             let appName = appInfo.appName,
             let version = appInfo.version,
@@ -165,6 +173,7 @@ class HTTPManager {
                                     version: version,
                                     build: build,
                                     iosReleaseType: appInfo.iosReleaseType?.rawValue,
+                                    encodingRequestSuccess: encodingRequestSuccess,
                                     uploadProgress: { (p) in
                                         uploadProgress?(p)
                     }, complate: { (success) in
