@@ -23,11 +23,11 @@ class FIRApp {
     
     // from detail
     var short: String?
-    var shortURLString: String {
+    var shortURLString: String? {
         if let short = short {
             return "http://fir.im/\(short)"
         }else{
-            return ""
+            return nil
         }
     }
     

@@ -134,6 +134,24 @@ class Util {
         let output = Process().execute(defaultsPath, workingDirectory: nil, arguments: ["read", plistFilePath, item]).output
         return output.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
+    
+    static func generateQRCode(from string: String) -> NSImage? {
+        let data = string.data(using: String.Encoding.ascii)
+        
+        if let filter = CIFilter(name: "CIQRCodeGenerator") {
+            filter.setValue(data, forKey: "inputMessage")
+            let transform = CGAffineTransform(scaleX: 3, y: 3)
+            
+            if let output = filter.outputImage?.applying(transform) {
+                let rep = NSCIImageRep(ciImage: output)
+                let nsImage = NSImage(size: rep.size)
+                nsImage.addRepresentation(rep)
+                return nsImage
+            }
+        }
+        
+        return nil
+    }
 }
 
 

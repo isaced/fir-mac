@@ -36,10 +36,6 @@ class AppDetailViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        iconImageView.wantsLayer = true
-        iconImageView.layer?.cornerRadius = 10
-        iconImageView.layer?.masksToBounds = true
-        
         NotificationCenter.default.addObserver(forName: NSNotification.Name.FIRListSelectionChange, object: nil, queue: nil) { (noti) in
             if let app = noti.object as? FIRApp {
                 self.app = app
@@ -73,9 +69,12 @@ class AppDetailViewController: NSViewController {
             dateformatter.timeStyle = .short
             releaseCreatedAtTextField.stringValue = dateformatter.string(from: date)
         }
-        
-        iconImageView.kf.setImage(with: app?.iconURL)
-        
+
+        if let shortUrl = app?.shortURLString {
+            iconImageView.image = Util.generateQRCode(from: shortUrl)
+        }else{
+            iconImageView.image = nil
+        }
         
         // short link go button position
         if app?.short == nil {
