@@ -1,7 +1,7 @@
 # fir-mac
 基于 macOS 的 fir.im 可视化管理客户端，可以进行上传、查看、编辑等操作。
 
-<img width="700" src="http://ww2.sinaimg.cn/large/006tKfTcgy1ffl941zc3fj31bs0z8n4u.jpg" />
+<img width="700" src="http://ww4.sinaimg.cn/large/006tKfTcgy1ffnjkuvhrhj31bs0z87bb.jpg" />
 
 ### 开发环境
 
