@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>zh_CN</string>
+	<key>CFBundleDisplayName</key>
+	<string>fir.im</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIconFile</key>
@@ -17,11 +19,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.developer-tools</string>
 	<key>LSMinimumSystemVersion</key>
@@ -33,8 +35,6 @@
 	</dict>
 	<key>NSMainStoryboardFile</key>
 	<string>Main</string>
-	<key>CFBundleDisplayName</key>
-	<string>fir.im</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>
