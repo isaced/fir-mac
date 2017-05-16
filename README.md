@@ -23,6 +23,10 @@
 
 所有网络请求接口都基于 [fir.im API Documents](http://fir.im/docs)
 
+### FAQ
+
+- [打不开“fir.im”，因为它来自身份不明的开发者](https://github.com/isaced/fir-mac/wiki/FAQ#faq-1打不开-firim因为它来自身份不明的开发者)
+
 ### 反馈
 
 如有任何问题或建议，请[提交](https://github.com/isaced/fir-mac/issues/new) issue 让我看到。
