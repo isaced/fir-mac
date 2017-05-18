@@ -22,7 +22,6 @@
 		0BF95A661D1A3B8A00F6BF62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BF95A651D1A3B8A00F6BF62 /* Assets.xcassets */; };
 		0BF95A691D1A3B8A00F6BF62 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BF95A671D1A3B8A00F6BF62 /* Main.storyboard */; };
 		0D505C861EC7550300036114 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D505C851EC7550300036114 /* UploadViewController.swift */; };
-		34909C0FC2CF77E5B780B87B /* Pods_fir_im.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDCF56BFFA9EB035628C3DE1 /* Pods_fir_im.framework */; };
 		D854C89944699BC43276BE32 /* Pods_fir_mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A54D130C8393B07CED35F1 /* Pods_fir_mac.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,7 +37,7 @@
 		0B5E72241EC05C5600557E18 /* AppDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDetailViewController.swift; sourceTree = "<group>"; };
 		0B5E72261EC078F900557E18 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		0B7DC0861EC30B7F00300577 /* Process+Execute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Process+Execute.swift"; sourceTree = "<group>"; };
-		0BF95A5E1D1A3B8A00F6BF62 /* fir.im.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fir.im.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0BF95A5E1D1A3B8A00F6BF62 /* fir-mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fir-mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BF95A611D1A3B8A00F6BF62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0BF95A651D1A3B8A00F6BF62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0BF95A681D1A3B8A00F6BF62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -58,7 +57,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D854C89944699BC43276BE32 /* Pods_fir_mac.framework in Frameworks */,
-				34909C0FC2CF77E5B780B87B /* Pods_fir_im.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,7 +116,7 @@
 		0BF95A5F1D1A3B8A00F6BF62 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0BF95A5E1D1A3B8A00F6BF62 /* fir.im.app */,
+				0BF95A5E1D1A3B8A00F6BF62 /* fir-mac.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -161,9 +159,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0BF95A5D1D1A3B8900F6BF62 /* fir.im */ = {
+		0BF95A5D1D1A3B8900F6BF62 /* fir-mac */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0BF95A6D1D1A3B8A00F6BF62 /* Build configuration list for PBXNativeTarget "fir.im" */;
+			buildConfigurationList = 0BF95A6D1D1A3B8A00F6BF62 /* Build configuration list for PBXNativeTarget "fir-mac" */;
 			buildPhases = (
 				F42D61E0E8CFC96047D0FAF8 /* [CP] Check Pods Manifest.lock */,
 				0BF95A5A1D1A3B8900F6BF62 /* Sources */,
@@ -176,9 +174,9 @@
 			);
 			dependencies = (
 			);
-			name = fir.im;
+			name = "fir-mac";
 			productName = "fir-mac";
-			productReference = 0BF95A5E1D1A3B8A00F6BF62 /* fir.im.app */;
+			productReference = 0BF95A5E1D1A3B8A00F6BF62 /* fir-mac.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -209,7 +207,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0BF95A5D1D1A3B8900F6BF62 /* fir.im */,
+				0BF95A5D1D1A3B8900F6BF62 /* fir-mac */,
 			);
 		};
 /* End PBXProject section */
@@ -239,7 +237,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-fir.im/Pods-fir.im-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-fir-mac/Pods-fir-mac-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E7E04EED777F281EF3AE9795 /* [CP] Copy Pods Resources */ = {
@@ -254,7 +252,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-fir.im/Pods-fir.im-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-fir-mac/Pods-fir-mac-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F42D61E0E8CFC96047D0FAF8 /* [CP] Check Pods Manifest.lock */ = {
@@ -401,7 +399,7 @@
 		};
 		0BF95A6E1D1A3B8A00F6BF62 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 128F72F68141176F029AB9FF /* Pods-fir.im.debug.xcconfig */;
+			baseConfigurationReference = 4108783F5D644C9896BFFD69 /* Pods-fir-mac.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -416,7 +414,7 @@
 		};
 		0BF95A6F1D1A3B8A00F6BF62 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 232E9966E88788C2DB754D7D /* Pods-fir.im.release.xcconfig */;
+			baseConfigurationReference = 89B1D50CC075A65767EE3D6E /* Pods-fir-mac.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -441,7 +439,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0BF95A6D1D1A3B8A00F6BF62 /* Build configuration list for PBXNativeTarget "fir.im" */ = {
+		0BF95A6D1D1A3B8A00F6BF62 /* Build configuration list for PBXNativeTarget "fir-mac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0BF95A6E1D1A3B8A00F6BF62 /* Debug */,
