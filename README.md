@@ -25,6 +25,7 @@
 
 ### FAQ
 
+- [fir-mac 开发笔记](http://www.isaced.com/post-286.html)
 - [打不开“fir.im”，因为它来自身份不明的开发者](https://github.com/isaced/fir-mac/wiki/FAQ#faq-1打不开-firim因为它来自身份不明的开发者)
 
 ### 反馈
