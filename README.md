@@ -17,7 +17,7 @@
 
 使用你自己的 fir 账号登陆，先到 [fir.im 后台](https://fir.im/apps/apitoken) 查看自己的 `API Token`，然后在应用中登陆，即可完成后续一系列数据请求。
 
-> `API Token` 完全纯本地保存在应用沙盒 UserDefaults 中，所以你不必担心其安全问题
+> `API Token` 保存在 Keychain 中，所以你不必担心安全问题
 
 ### URL scheme
 
