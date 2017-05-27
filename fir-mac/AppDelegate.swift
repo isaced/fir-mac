@@ -13,9 +13,9 @@ let UserDefaultsFIRAPITokenKey = "FIR_api_token"
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
+    var prepareUploadUrl: URL?
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
-        
         if let cached = UserDefaults.standard.string(forKey: UserDefaultsFIRAPITokenKey) {
             HTTPManager.shared.APIToken = cached
             postLoginNotification()
@@ -23,7 +23,31 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             alertForAPIToken()
         }
     }
-
+    
+    func applicationWillFinishLaunching(_ notification: Notification) {
+        NSAppleEventManager.shared().setEventHandler(self, andSelector: #selector(handleEvent(_:withReplyEvent:)), forEventClass: AEEventClass(kInternetEventClass), andEventID: AEEventID(kAEGetURL))
+    }
+    
+    func handleEvent(_ event: NSAppleEventDescriptor!, withReplyEvent: NSAppleEventDescriptor!) {
+        if let path = event.paramDescriptor(forKeyword: keyDirectObject)?.stringValue {
+            if let url = URL(string: path) {
+                if let components = URLComponents(url: url, resolvingAgainstBaseURL: false) {
+                    if components.host ?? "" == "upload" {
+                        for item in components.queryItems ?? [] {
+                            if let filePath = item.value {
+                                let fileUrl = URL(fileURLWithPath: filePath)
+                                if self.prepareUploadUrl == nil {
+                                    prepareUploadUrl = fileUrl
+                                }
+                                NotificationCenter.default.post(name: NSNotification.Name.FIRSchemeUploadAction, object: fileUrl)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
@@ -91,5 +115,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func postLogoutNotification() {
         NotificationCenter.default.post(name: Notification.Name.FIRLogoutComplete, object: nil)
     }
+    
+    
 }
 

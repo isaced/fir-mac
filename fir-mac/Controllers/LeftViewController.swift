@@ -27,6 +27,20 @@ class LeftViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
         NotificationCenter.default.addObserver(forName: NSNotification.Name.FIRLogoutComplete, object: nil, queue: nil) { (noti) in
             self.reloadData()
         }
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.FIRSchemeUploadAction, object: nil, queue: nil) { (noti) in
+            if let fileUrl = noti.object as? URL {
+                self.urlschemeUploadHandle(fileUrl: fileUrl)
+            }
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+            if let appDelegate = NSApplication.shared().delegate as? AppDelegate {
+                if let prepareUploadUrl = appDelegate.prepareUploadUrl {
+                    self.urlschemeUploadHandle(fileUrl: prepareUploadUrl)
+                }
+            }
+        }
+        
     }
     
     func reloadData() {
@@ -75,36 +89,45 @@ class LeftViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
         openPanel.allowedFileTypes = ["ipa"]
         if openPanel.runModal() == NSModalResponseOK {
             if let url = openPanel.url {
-                
-                // uploading view controller
-                let uploadViewController = self.storyboard?.instantiateController(withIdentifier: "UploadViewController") as! UploadViewController
-                self.parent?.presentViewControllerAsSheet(uploadViewController)
-                uploadViewController.startParsing()
-                Util.parseAppInfo(sourceFile: url, callback: { (appInfo) in
-                    uploadViewController.stopParsing()
-                    if let appInfo = appInfo {
-                        print(appInfo)
-                        uploadViewController.appInfo = appInfo
-                        uploadViewController.startUpload()
-                        HTTPManager.shared.uploadApp(appInfo: appInfo,
-                                                     encodingRequestSuccess: { (request) in
-                                uploadViewController.cancelActionCallback = {
-                                    request.cancel()
-                                }
-                        }, uploadProgress: {(progress) in
-                            uploadViewController.uploadingProgressIndicator.doubleValue = progress.fractionCompleted
-                        }, complate: { (success) in
-                            print("upload complate")
-                            uploadViewController.stopUpload()
-                            uploadViewController.showResultStatus(success: success)
-                        })
-                    }else{
-                        print("App 解析出错...")
-                        uploadViewController.showResultStatus(success: false, message: "App 解析出错")
-                    }
-                })
+                uploadfile(url: url)
             }
         }
     }
     
+    func uploadfile(url: URL) {
+        // uploading view controller
+        let uploadViewController = self.storyboard?.instantiateController(withIdentifier: "UploadViewController") as! UploadViewController
+        self.parent?.presentViewControllerAsSheet(uploadViewController)
+        uploadViewController.startParsing()
+        Util.parseAppInfo(sourceFile: url, callback: { (appInfo) in
+            uploadViewController.stopParsing()
+            if let appInfo = appInfo {
+                print(appInfo)
+                uploadViewController.appInfo = appInfo
+                uploadViewController.startUpload()
+                HTTPManager.shared.uploadApp(appInfo: appInfo,
+                                             encodingRequestSuccess: { (request) in
+                                                uploadViewController.cancelActionCallback = {
+                                                    request.cancel()
+                                                }
+                }, uploadProgress: {(progress) in
+                    uploadViewController.uploadingProgressIndicator.doubleValue = progress.fractionCompleted
+                }, complate: { (success) in
+                    print("upload complate")
+                    uploadViewController.stopUpload()
+                    uploadViewController.showResultStatus(success: success)
+                })
+            }else{
+                print("App 解析出错...")
+                uploadViewController.showResultStatus(success: false, message: "App 解析出错")
+            }
+        })
+    }
+    
+    func urlschemeUploadHandle(fileUrl: URL) {
+        // url && login && not uploading
+        if HTTPManager.shared.APIToken != nil, !HTTPManager.shared.uploading {
+            self.uploadfile(url: fileUrl)
+        }
+    }
 }

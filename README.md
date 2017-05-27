@@ -19,6 +19,14 @@
 
 > `API Token` 完全纯本地保存在应用沙盒 UserDefaults 中，所以你不必担心其安全问题
 
+### URL scheme
+
+你可以在其他地方唤起 fir-mac 进行上传操作
+
+```
+fir-mac://upload?filepath=path/to/xx.ipa
+```
+
 ### API
 
 所有网络请求接口都基于 [fir.im API Documents](http://fir.im/docs)

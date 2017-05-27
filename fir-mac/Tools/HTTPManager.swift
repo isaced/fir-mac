@@ -20,7 +20,11 @@ class HTTPManager {
     
     static let shared = HTTPManager()
     
-    var APIToken: String?
+    var APIToken: String? = {
+        return UserDefaults.standard.string(forKey: UserDefaultsFIRAPITokenKey)
+    }()
+    
+    var uploading: Bool = false
     
     func fetchApps(callback: @escaping ((_ apps: [FIRApp])->Void)) {
         guard let APIToken = APIToken else {
@@ -134,7 +138,10 @@ class HTTPManager {
             complate(false)
             return
         }
-
+        
+        // flag uploading
+        self.uploading = true
+        
         prepareUploadApp(bundleID: bundleID, type: type) { (response) in
             if let uploadFieldPrefix = response?.dictionary?["cert"]?["prefix"].string {
                 // upload icon
@@ -178,6 +185,10 @@ class HTTPManager {
                                         uploadProgress?(p)
                     }, complate: { (success) in
                         complate(success)
+                        
+                        
+                        // flag uploading
+                        self.uploading = false
                     })
                 }
             } else {

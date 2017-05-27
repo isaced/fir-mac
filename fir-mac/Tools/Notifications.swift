@@ -12,4 +12,5 @@ extension Notification.Name {
     static let FIRLoginComplete = Notification.Name("FIRLoginComplete")
     static let FIRLogoutComplete = Notification.Name("FIRLogoutComplete")
     static let FIRListSelectionChange = Notification.Name("FIRListSelectionChange")
+    static let FIRSchemeUploadAction = Notification.Name("FIRSchemeUploadAction")
 }
