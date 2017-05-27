@@ -9,4 +9,6 @@ target 'fir-mac' do
 #  pod 'Alamofire'
   pod 'Alamofire-SwiftyJSON', :git => 'https://github.com/SwiftyJSON/Alamofire-SwiftyJSON.git'
   pod 'Kingfisher'
+  pod 'KeychainAccess'
+  
 end

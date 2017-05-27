@@ -3,11 +3,13 @@ PODS:
   - Alamofire-SwiftyJSON (2.0.0-beta.1):
     - Alamofire (~> 4.0)
     - SwiftyJSON (~> 3.0)
+  - KeychainAccess (3.0.2)
   - Kingfisher (3.6.2)
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
   - Alamofire-SwiftyJSON (from `https://github.com/SwiftyJSON/Alamofire-SwiftyJSON.git`)
+  - KeychainAccess
   - Kingfisher
 
 EXTERNAL SOURCES:
@@ -22,9 +24,10 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   Alamofire-SwiftyJSON: 0a9e28b43e448ee58d11e41f8ddda52f17be90b2
+  KeychainAccess: a986406022dfc7c634c691ad3bec670cc6a32002
   Kingfisher: 2c94e72c6830622c71d06adf4ea024c37d316830
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: f89e149c806f03839443d3306a7c6f3e22d479de
+PODFILE CHECKSUM: 46326b4987e9f35ddd0dbd02b41e2164dcbad3d7
 
 COCOAPODS: 1.2.1

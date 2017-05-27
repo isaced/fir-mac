@@ -7,8 +7,10 @@
 //
 
 import Cocoa
+import KeychainAccess
 
-let UserDefaultsFIRAPITokenKey = "FIR_api_token"
+let KeychainFirmacServiceName = "com.isaced.fir-mac.token"
+let KeychainFirmacAPITokenKey = "api-token"
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -16,7 +18,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var prepareUploadUrl: URL?
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        if let cached = UserDefaults.standard.string(forKey: UserDefaultsFIRAPITokenKey) {
+
+        if let cached = Keychain(service: KeychainFirmacServiceName)[KeychainFirmacAPITokenKey] {
             HTTPManager.shared.APIToken = cached
             postLoginNotification()
         }else{
@@ -81,7 +84,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 return
             }
             
-            UserDefaults.standard.set(token, forKey: UserDefaultsFIRAPITokenKey)
+            Keychain(service: KeychainFirmacServiceName)[KeychainFirmacAPITokenKey] = token
             HTTPManager.shared.APIToken = token
             postLoginNotification()
         } else {
@@ -94,7 +97,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func logoutMenuAction(_ sender: NSMenuItem) {
-        UserDefaults.standard.removeObject(forKey: UserDefaultsFIRAPITokenKey)
+        try? Keychain(service: KeychainFirmacServiceName).remove(KeychainFirmacAPITokenKey)
         HTTPManager.shared.APIToken = nil
         postLogoutNotification()
         

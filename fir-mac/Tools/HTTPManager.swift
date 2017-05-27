@@ -10,6 +10,7 @@ import Foundation
 import Alamofire
 import Alamofire_SwiftyJSON
 import SwiftyJSON
+import KeychainAccess
 
 enum UploadAppType: String {
     case ios = "ios"
@@ -21,7 +22,7 @@ class HTTPManager {
     static let shared = HTTPManager()
     
     var APIToken: String? = {
-        return UserDefaults.standard.string(forKey: UserDefaultsFIRAPITokenKey)
+        return Keychain(service: KeychainFirmacServiceName)[KeychainFirmacAPITokenKey]
     }()
     
     var uploading: Bool = false
